@@ -14,6 +14,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 
 import com.bruce.pickerview.LoopScrollListener;
@@ -27,12 +28,12 @@ import java.util.List;
 
 public class TimePickerPopWin extends PopupWindow implements View.OnClickListener {
 
-    private Button cancelBtn;
-    private Button confirmBtn;
+    private ImageButton cancelBtn;
+    private ImageButton confirmBtn;
     private LoopView hourLoopView;
     private LoopView minuteLoopView;
     private LoopView meridianLoopView;
-    private View pickerContainerV;
+    private View pickerContainerV,pickerContainerVBackground;
     private View contentView;
 
     private int hourPos = 0;
@@ -68,7 +69,7 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
         private int colorCancel = Color.parseColor("#999999");
         private int colorConfirm = Color.parseColor("#303F9F");
         private int btnTextSize = 16;//text btnTextsize of cancel and confirm button
-        private int viewTextSize = 25;
+        private int viewTextSize = R.dimen.view_text_size;
 
         public Builder textCancel(String textCancel){
             this.textCancel = textCancel;
@@ -121,17 +122,17 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
 
     private void initView(){
         contentView= LayoutInflater.from(mContext).inflate(R.layout.layout_time_picker,null);
-        cancelBtn=(Button)contentView.findViewById(R.id.btn_cancel);
-        cancelBtn.setTextColor(colorCancel);
-        cancelBtn.setTextSize(btnTextsize);
-        confirmBtn=(Button)contentView.findViewById(R.id.btn_confirm);
-        confirmBtn.setTextColor(colorConfirm);
-        confirmBtn.setTextSize(btnTextsize);
+        cancelBtn=(ImageButton)contentView.findViewById(R.id.btn_cancel);
+//        cancelBtn.setTextColor(colorCancel);
+//        cancelBtn.setTextSize(btnTextsize);
+        confirmBtn=(ImageButton)contentView.findViewById(R.id.btn_confirm);
+//        confirmBtn.setTextColor(colorConfirm);
+//        confirmBtn.setTextSize(btnTextsize);
         hourLoopView = (LoopView) contentView.findViewById(R.id.picker_hour);
         minuteLoopView = (LoopView) contentView.findViewById(R.id.picker_minute);
         meridianLoopView = (LoopView) contentView.findViewById(R.id.picker_meridian);
         pickerContainerV = contentView.findViewById(R.id.container_picker);
-
+        pickerContainerVBackground = contentView.findViewById(R.id.container_picker_background);
 
         hourLoopView.setLoopListener(new LoopScrollListener() {
             @Override
@@ -161,13 +162,13 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
         confirmBtn.setOnClickListener(this);
         contentView.setOnClickListener(this);
 
-        if(!TextUtils.isEmpty(textConfirm)){
-            confirmBtn.setText(textConfirm);
-        }
-
-        if(!TextUtils.isEmpty(textCancel)){
-            cancelBtn.setText(textCancel);
-        }
+//        if(!TextUtils.isEmpty(textConfirm)){
+////            confirmBtn.setText(textConfirm);
+//        }
+//
+//        if(!TextUtils.isEmpty(textCancel)){
+////            cancelBtn.setText(textCancel);
+//        }
 
         setTouchable(true);
         setFocusable(true);
@@ -248,6 +249,7 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
             trans.setInterpolator(new AccelerateDecelerateInterpolator());
 
             pickerContainerV.startAnimation(trans);
+            pickerContainerVBackground.startAnimation(trans);
         }
     }
 
@@ -281,6 +283,7 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
         });
 
         pickerContainerV.startAnimation(trans);
+        pickerContainerVBackground.startAnimation(trans);
     }
 
     /**
