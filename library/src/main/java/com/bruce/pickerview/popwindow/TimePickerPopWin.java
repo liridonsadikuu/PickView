@@ -16,6 +16,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.bruce.pickerview.LoopScrollListener;
 import com.bruce.pickerview.LoopView;
@@ -35,6 +36,7 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
     private LoopView meridianLoopView;
     private View pickerContainerV,pickerContainerVBackground;
     private View contentView;
+    TextView tv_time_changed;
 
     private int hourPos = 0;
     private int minutePos = 0;
@@ -133,6 +135,7 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
         meridianLoopView = (LoopView) contentView.findViewById(R.id.picker_meridian);
         pickerContainerV = contentView.findViewById(R.id.container_picker);
         pickerContainerVBackground = contentView.findViewById(R.id.container_picker_background);
+        tv_time_changed = (TextView) contentView.findViewById(R.id.tv_time_changed);
 
         hourLoopView.setLoopListener(new LoopScrollListener() {
             @Override
@@ -249,6 +252,8 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
         sb.append(String.valueOf(minList.get(minutePos)));
         sb.append(amPm);
         mListener.onTimePickCompleted(hourPos+1,minutePos,amPm,sb.toString());
+        System.out.println("testi " + sb.toString());
+        tv_time_changed.setText(sb.toString().toLowerCase());
     }
 
     private void onTimeScrollSelectedCompleted() {
@@ -261,6 +266,8 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
             sb.append(String.valueOf(minList.get(minutePos)));
             sb.append(amPm);
             mListener.onTimeScroll(hourPos + 1, minutePos, amPm, sb.toString());
+            tv_time_changed.setText(sb.toString().toLowerCase());
+
         }
     }
 
@@ -275,12 +282,12 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
 
             TranslateAnimation trans = new TranslateAnimation(
                     Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF,
-                    0, Animation.RELATIVE_TO_SELF, 1,
+                    0, Animation.RELATIVE_TO_SELF, 0,
                     Animation.RELATIVE_TO_SELF, 0);
 
             showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM,
                     0, 0);
-            trans.setDuration(400);
+            trans.setDuration(10);
             trans.setInterpolator(new AccelerateDecelerateInterpolator());
 
             pickerContainerV.startAnimation(trans);
@@ -295,9 +302,9 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
 
         TranslateAnimation trans = new TranslateAnimation(
                 Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0,
-                Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1);
+                Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
 
-        trans.setDuration(400);
+        trans.setDuration(10);
         trans.setInterpolator(new AccelerateInterpolator());
         trans.setAnimationListener(new Animation.AnimationListener() {
 

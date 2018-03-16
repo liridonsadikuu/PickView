@@ -1,18 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/time_picker_width"
-    android:layout_height="match_parent">
+    android:id="@+id/rel_timepicker_rootview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <ImageView
+        android:id="@+id/alphaImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".3"
+        android:background="#000"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/dateLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="162dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Date"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/rel_editDate"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background_add_appointments"
+            android:padding="@dimen/space_15">
+
+            <TextView
+                android:id="@+id/tv_dateOfAppointment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday, December 27"
+                android:textColor="@color/lightBlackColor"
+                android:textSize="@dimen/space_20" />
+
+            <ImageView
+                android:id="@+id/iv_calendar_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_30"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/timeLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_15"
+        android:layout_marginTop="162dp"
+        android:layout_toRightOf="@+id/dateLinearLayout"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:textColor="@color/lightBlackColor"
+            android:textSize="@dimen/text_size_24"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:id="@+id/ll_editTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background_add_appointments"
+            android:padding="@dimen/space_15">
+
+            <TextView
+                android:id="@+id/tv_time_changed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:26 am"
+                android:textColor="@color/lightBlackColor"
+                android:textSize="@dimen/space_20" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/space_10"
+                android:src="@drawable/icon_clocl" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/container_picker_background"
         android:layout_width="@dimen/time_picker_width"
         android:layout_height="@dimen/time_picker_height"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginBottom="12dp"
-        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="162dp"
+        android:layout_toRightOf="@+id/timeLinearLayout"
         android:background="@drawable/custom_rectangle_silver"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -30,10 +127,10 @@
         android:id="@+id/container_picker"
         android:layout_width="@dimen/time_picker_width"
         android:layout_height="@dimen/time_picker_height"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginBottom="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="162dp"
+        android:layout_toRightOf="@+id/timeLinearLayout"
         android:background="@android:color/transparent"
         android:orientation="vertical">
 
@@ -119,7 +216,7 @@
                 <ImageButton
                     android:id="@+id/btn_confirm"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
@@ -136,7 +233,7 @@
                 <ImageButton
                     android:id="@+id/btn_cancel"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"

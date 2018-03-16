@@ -6,6 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bruce.pickerview.LoopScrollListener;
@@ -21,6 +24,9 @@ public class MainActivity extends AppCompatActivity{
 //    private String mProvince = null; // 省份
 //    private String mCity = null; // 城市
     private LoopView loopView;
+    TextView tv_time_changed;
+    Button timepick;
+    RelativeLayout rel_timepicker_rootview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        tv_time_changed= (TextView) findViewById(R.id.tv_time_changed);
+        timepick= (Button) findViewById(R.id.timepick);
 
         findViewById(R.id.date).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,18 +46,22 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        findViewById(R.id.timepick).setOnClickListener(new View.OnClickListener() {
+        timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerPopWin timePickerPopWin=new TimePickerPopWin.Builder(MainActivity.this, new TimePickerPopWin.OnTimePickListener() {
                     @Override
                     public void onTimePickCompleted(int hour, int minute, String AM_PM, String time) {
                         Toast.makeText(MainActivity.this, time, Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
                     public void onTimeScroll(int hour, int minute, String AM_PM, String time) {
                         System.out.println("TIME:: "+time);
+//                        if (time.length()>0) {
+//                            tv_time_changed.setText(time);
+//                        }
                     }
 
                 }).textConfirm("CONFIRM")

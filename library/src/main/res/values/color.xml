@@ -2,4 +2,32 @@
 <resources>
     <color name="btn_cancel_color">#999999</color>
     <color name="btn_confirm_color">#303F9F</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorBlack">#000000</color>
+
+    <!--<color name="colorGray">#8194A9</color>-->
+
+
+    <color name="colorGray">#434d59</color>
+
+    <color name="colorGreen">#56DBC6</color>
+    <color name="colorDarkGreen">#66C9A5</color>
+
+
+
+    <color name="colorRed">#FB4149</color>
+
+    <color name="colorYellow">#FECA4D</color>
+
+    <color name="colorOrange">#E87618</color>
+
+    <color name="colorBlue">#3dade2</color>
+
+    <color name="backgroundColor">#faf9fe</color>
+
+    <color name="lightBlackColor">#5d5151</color>
+
+    <color name="colorLightGrey">#d1d1d1</color>
 </resources>
