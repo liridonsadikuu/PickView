@@ -287,7 +287,7 @@ public class LoopView extends View {
                 // translateY = r - r*cos(å) -
                 //(Math.sin(radian) * mMaxTextHeight) / 2 this is text offset
                 //int translateY = (int) (mCircularRadius - Math.cos(radian) * mCircularRadius - (Math.sin(radian) * mMaxTextHeight) / 2) + mPaddingTopBottom;
-                float translateY = count * itemHeight - mPaddingTopBottom - itemHeight / 3;
+                float translateY = count * itemHeight - mPaddingTopBottom + 8;
                 canvas.translate(0.0F, translateY);
 
                 System.out.println("translateY: "+translateY);

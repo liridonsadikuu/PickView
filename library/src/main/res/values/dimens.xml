@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="picker_text_size">22sp</dimen>
-    <dimen name="time_picker_height">200dp</dimen>
-    <dimen name="timer_picker_top">160dp</dimen>
-    <dimen name="time_picker_width">160dp</dimen>
+    <dimen name="picker_text_size">34sp</dimen>
+    <dimen name="time_picker_height">300dp</dimen>
+    <dimen name="timer_picker_top">260dp</dimen>
+    <dimen name="time_picker_width">200dp</dimen>
 </resources>

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity{
                 }).textConfirm("CONFIRM")
                         .textCancel("CANCEL")
                         .btnTextSize(16)
-                        .viewTextSize(25)
+                        .viewTextSize(34)
                         .colorCancel(Color.parseColor("#999999"))
                         .colorConfirm(Color.parseColor("#009900"))
                         .build();
