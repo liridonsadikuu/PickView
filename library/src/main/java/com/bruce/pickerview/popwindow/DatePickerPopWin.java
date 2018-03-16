@@ -195,6 +195,11 @@ public class DatePickerPopWin extends PopupWindow implements OnClickListener {
                 yearPos = item;
                 initDayPickerView();
             }
+
+            @Override
+            public void onScrollSelectedItem(int item) {
+
+            }
         });
         monthLoopView.setLoopListener(new LoopScrollListener() {
             @Override
@@ -202,11 +207,20 @@ public class DatePickerPopWin extends PopupWindow implements OnClickListener {
                 monthPos = item;
                 initDayPickerView();
             }
+            @Override
+            public void onScrollSelectedItem(int item) {
+
+            }
         });
         dayLoopView.setLoopListener(new LoopScrollListener() {
             @Override
             public void onItemSelect(int item) {
                 dayPos = item;
+            }
+
+            @Override
+            public void onScrollSelectedItem(int item) {
+
             }
         });
 

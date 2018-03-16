@@ -139,6 +139,13 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
             public void onItemSelect(int item) {
                 hourPos=item;
             }
+
+            @Override
+            public void onScrollSelectedItem(int item) {
+                hourPos = item;
+                onTimeScrollSelectedCompleted();
+            }
+
         });
 
         minuteLoopView.setLoopListener(new LoopScrollListener() {
@@ -146,12 +153,23 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
             public void onItemSelect(int item) {
                 minutePos=item;
             }
+            @Override
+            public void onScrollSelectedItem(int item) {
+                minutePos = item;
+                onTimeScrollSelectedCompleted();
+
+            }
         });
 
         meridianLoopView.setLoopListener(new LoopScrollListener() {
             @Override
             public void onItemSelect(int item) {
                 meridianPos=item;
+            }
+            @Override
+            public void onScrollSelectedItem(int item) {
+                meridianPos=item;
+                onTimeScrollSelectedCompleted();
             }
         });
 
@@ -216,16 +234,33 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
         } else if (v == confirmBtn) {
 
             if (null != mListener) {
-                String amPm=meridianList.get(meridianPos);
-
-                StringBuffer sb = new StringBuffer();
-                sb.append(String.valueOf(hourList.get(hourPos)));
-                sb.append(":");
-                sb.append(String.valueOf(minList.get(minutePos)));
-                sb.append(amPm);
-                mListener.onTimePickCompleted(hourPos+1,minutePos,amPm,sb.toString());
+              onTimePickedCompleted();
             }
             dismissPopWin();
+        }
+    }
+
+    private void onTimePickedCompleted() {
+        String amPm=meridianList.get(meridianPos);
+
+        StringBuffer sb = new StringBuffer();
+        sb.append(String.valueOf(hourList.get(hourPos)));
+        sb.append(":");
+        sb.append(String.valueOf(minList.get(minutePos)));
+        sb.append(amPm);
+        mListener.onTimePickCompleted(hourPos+1,minutePos,amPm,sb.toString());
+    }
+
+    private void onTimeScrollSelectedCompleted() {
+        if(mListener != null) {
+            String amPm = meridianList.get(meridianPos);
+
+            StringBuffer sb = new StringBuffer();
+            sb.append(String.valueOf(hourList.get(hourPos)));
+            sb.append(":");
+            sb.append(String.valueOf(minList.get(minutePos)));
+            sb.append(amPm);
+            mListener.onTimeScroll(hourPos + 1, minutePos, amPm, sb.toString());
         }
     }
 
@@ -304,5 +339,8 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
          * @param time
          */
          void onTimePickCompleted(int hour, int minute, String AM_PM, String time);
+
+         void onTimeScroll(int hour, int minute, String AM_PM, String time);
+
     }
 }

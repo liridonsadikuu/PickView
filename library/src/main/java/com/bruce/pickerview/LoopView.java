@@ -290,12 +290,10 @@ public class LoopView extends View {
                 float translateY = count * itemHeight - mPaddingTopBottom + 8;
                 canvas.translate(0.0F, translateY);
 
-                System.out.println("translateY: "+translateY);
                 //scale offset = Math.sin(radian) -> 0 - 1
                 canvas.scale(1.0F, 1.0F);
 //                canvas.scale(1.0F, (float) Math.sin(radian));
 
-                int method = 0;
                 if (translateY <= mTopLineY) {
                     //draw text y between 0 -> mTopLineY,include incomplete text
                     canvas.save();
@@ -306,8 +304,6 @@ public class LoopView extends View {
                     canvas.clipRect(0, mTopLineY - translateY, mWidgetWidth, (int) (itemHeight));
                     canvas.drawText(itemCount[count], mPaddingLeftRight, mMaxTextHeight, mCenterTextPaint);
                     canvas.restore();
-                    System.out.println(">>Method 1");
-                    method = 1;
                 } else if (mMaxTextHeight + translateY >= mBottomLineY) {
                     //draw text y between  mTopLineY -> mBottomLineY ,include incomplete text
                     canvas.save();
@@ -318,8 +314,6 @@ public class LoopView extends View {
                     canvas.clipRect(0, mBottomLineY - translateY, mWidgetWidth, (int) (itemHeight));
                     canvas.drawText(itemCount[count], mPaddingLeftRight, mMaxTextHeight, mTopBottomTextPaint);
                     canvas.restore();
-                    System.out.println(">>Method 2");
-                    method = 2;
 
                 } else if (translateY >= mTopLineY && mMaxTextHeight + translateY <= mBottomLineY) {
                     //draw center complete text
@@ -327,12 +321,7 @@ public class LoopView extends View {
                     canvas.drawText(itemCount[count], mPaddingLeftRight, mMaxTextHeight, mCenterTextPaint);
                     //center one indicate selected item
                     mSelectedItem = mDataList.indexOf(itemCount[count]);
-                    System.out.println(">>Method 3");
-
-                    method = 3;
-
                 }
-                System.out.println(method+"] Numero: "+itemCount[count]);
                 canvas.restore();
             }
             count++;
@@ -469,6 +458,9 @@ public class LoopView extends View {
             int selectedItem = getSelectedItem();
             mDataList.get(selectedItem);
             listener.onItemSelect(selectedItem);
+            System.out.println("selected: "+selectedItem);
+            //this.mLoopListener;
+            mLoopListener.onScrollSelectedItem(selectedItem);
         }
     }
 
